@@ -1,3 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+/* ============================================================
+   TEAM RECIOS — Global Styles
+   ============================================================ */
 
+/* ── Tailwind CSS v4 ── */
 @import "tailwindcss";
+
+/* Scan Angular component templates */
+@source "./app/**/*.{html,ts}";
+
+/* ── Base ── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #000004;
+  color: #f8fafc;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #000004; }
+::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.35); border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: #4F46E5; }
+
+/* ── Selection ── */
+::selection { background: rgba(99,102,241,0.3); color: #fff; }

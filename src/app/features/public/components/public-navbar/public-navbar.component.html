@@ -1,0 +1,132 @@
+<nav class="fixed top-0 left-0 w-full z-50">
+  <div class="bg-[#000004] backdrop-blur-xl">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+
+      <!-- ── Logo ─────────────────────────────────────────────── -->
+      <a
+        routerLink="/"
+        (click)="closeMobileMenu()"
+        aria-label="Team Recios - Inicio"
+        class="flex items-center gap-3 group"
+      >
+        <img
+          src="/img/logo/logo.png"
+          alt="Team Recios"
+          width="40"
+          height="40"
+          class="h-9 w-auto object-contain
+                 group-hover:scale-105 transition-all duration-300"
+        />
+        <span class="text-xl font-bold tracking-widest font-[Space_Grotesk,Inter,sans-serif]">
+          <span class="text-gray-200">TEAM </span>
+          <span class="text-indigo-400">RECIOS</span>
+        </span>
+      </a>
+
+      <!-- ── Desktop Menu ──────────────────────────────────────── -->
+      <ul class="hidden md:flex items-center gap-8 text-sm" role="list" aria-label="Navegación principal">
+        @for (link of navLinks(); track link.label) {
+          <li>
+            <button
+              class="text-gray-300 hover:text-indigo-400 transition-colors duration-300
+                     relative after:absolute after:bottom-[-4px] after:left-0 after:w-0
+                     after:h-[2px] after:bg-indigo-500 after:rounded-full
+                     after:transition-all after:duration-300 hover:after:w-full"
+              [class.!text-indigo-400]="activeSection() === link.fragment"
+              [class.after:!w-full]="activeSection() === link.fragment"
+              (click)="scrollToSection(link.fragment)"
+              [attr.aria-label]="'Ir a ' + link.label"
+            >
+              {{ link.label }}
+            </button>
+          </li>
+        }
+      </ul>
+
+      <!-- ── CTA + Hamburger ───────────────────────────────────── -->
+      <div class="flex items-center gap-3">
+
+        <!-- CTA Desktop -->
+        <button
+          id="navbar-cta-btn"
+          class="hidden md:inline-flex items-center gap-2 px-5 py-2 rounded-xl
+                 border border-indigo-500/50 text-indigo-300 font-semibold text-sm
+                 hover:border-indigo-400 hover:text-indigo-200 hover:bg-indigo-500/10
+                 hover:-translate-y-0.5 active:translate-y-0
+                 transition-all duration-200"
+          (click)="scrollToSection('contact')"
+          aria-label="Contáctanos"
+        >
+          Hablemos
+          <lucide-icon name="send" class="w-3.5 h-3.5"></lucide-icon>
+        </button>
+
+        <!-- Hamburger Mobile -->
+        <button
+          id="navbar-mobile-toggle"
+          class="md:hidden p-2 rounded-lg text-gray-300 hover:text-white
+                 bg-white/5 hover:bg-indigo-500/10 border border-white/10
+                 hover:border-indigo-500/40 transition-all duration-300"
+          (click)="toggleMobileMenu()"
+          [attr.aria-expanded]="isMobileOpen()"
+          aria-controls="mobile-menu"
+          aria-label="Abrir menú"
+        >
+          @if (!isMobileOpen()) {
+            <lucide-icon name="menu" class="w-6 h-6"></lucide-icon>
+          } @else {
+            <lucide-icon name="x" class="w-6 h-6 text-indigo-400"></lucide-icon>
+          }
+        </button>
+      </div>
+
+    </div><!-- /container -->
+
+    <!-- ── Mobile Menu ───────────────────────────────────────── -->
+    @if (isMobileOpen()) {
+      <div
+        id="mobile-menu"
+        class="md:hidden px-6 pb-6 border-t border-white/5"
+        role="dialog"
+        aria-label="Menú móvil"
+      >
+        <ul class="flex flex-col gap-1 pt-4" role="list">
+          @for (link of navLinks(); track link.label) {
+            <li>
+              <button
+                class="w-full text-left px-4 py-3 rounded-lg text-sm text-gray-300
+                       hover:text-indigo-400 hover:bg-indigo-500/8 transition-all duration-200"
+                (click)="scrollToSection(link.fragment)"
+              >
+                {{ link.label }}
+              </button>
+            </li>
+          }
+        </ul>
+
+        <button
+          class="mt-5 w-full px-5 py-3 rounded-xl
+                 border border-indigo-500/50 text-indigo-300 font-semibold text-sm
+                 flex items-center justify-center gap-2
+                 hover:border-indigo-400 hover:text-indigo-200 hover:bg-indigo-500/10
+                 transition-all duration-200"
+          (click)="scrollToSection('contact')"
+        >
+          Hablemos
+          <lucide-icon name="send" class="w-4 h-4"></lucide-icon>
+        </button>
+      </div>
+    }
+
+  </div>
+</nav>
+
+<!-- Backdrop -->
+@if (isMobileOpen()) {
+  <div
+    class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
+    (click)="closeMobileMenu()"
+    aria-hidden="true"
+  ></div>
+}

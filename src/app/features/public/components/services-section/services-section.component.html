@@ -1,0 +1,103 @@
+<section
+  id="services"
+  class="relative bg-[#000004] py-24 sm:py-32 overflow-hidden"
+>
+  <!-- Background Glows -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-indigo-600/5 rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-violet-700/5 rounded-full blur-[100px]"></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-12">
+    
+    <!-- Section Header -->
+    <div class="flex flex-col items-center text-center gap-4 mb-16 sm:mb-20">
+      <span class="text-xs font-bold tracking-[0.3em] uppercase text-indigo-400">
+        SERVICIOS
+      </span>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+        ¿Qué podemos hacer por ti?
+      </h2>
+      <div class="w-20 h-1.5 bg-indigo-600/40 rounded-full mt-2 overflow-hidden">
+        <div class="w-1/2 h-full bg-indigo-400 animate-pulse"></div>
+      </div>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      @for (service of services; track service.title) {
+        <div class="group relative flex flex-col
+                    bg-[#040612] border border-indigo-500/15 rounded-2xl
+                    hover:border-indigo-500/40 transition-all duration-500 hover:-translate-y-1
+                    shadow-xl shadow-black/60 overflow-hidden
+                    min-h-[480px]">
+
+          <!-- ── Top: Icon + Title row ────────────────────────── -->
+          <div class="flex items-start gap-5 p-7 pb-0">
+            <!-- Icon Box -->
+            <div class="flex-shrink-0 w-[56px] h-[56px] rounded-xl
+                        bg-indigo-600/10 border border-indigo-500/30
+                        flex items-center justify-center
+                        shadow-[0_0_18px_rgba(79,70,229,0.15)]
+                        group-hover:shadow-[0_0_30px_rgba(79,70,229,0.30)]
+                        group-hover:border-indigo-500/60 transition-all duration-300">
+              <lucide-icon [name]="service.icon" class="w-7 h-7 text-indigo-400"></lucide-icon>
+            </div>
+
+            <!-- Title + Accent -->
+            <h3 class="text-[1.45rem] font-bold leading-snug">
+              <span class="text-white">{{ service.title }}</span>
+              <br>
+              <span class="text-indigo-400">{{ service.accent }}</span>
+            </h3>
+          </div>
+
+          <!-- ── Description ───────────────────────────────────── -->
+          <p class="text-gray-400 text-sm leading-relaxed px-7 pt-5 pb-5 max-w-[85%]">
+            {{ service.description }}
+          </p>
+
+          <!-- ── Features + Image overlay ──────────────────────── -->
+          <div class="relative flex-1 px-7 pb-7">
+
+            <!-- Feature list (left side, z-top) -->
+            <ul class="relative z-10 flex flex-col gap-3">
+              @for (feature of service.features; track feature) {
+                <li class="flex items-center gap-3 text-[14px] font-medium text-gray-200">
+                  <!-- Solid indigo check -->
+                  <svg class="flex-shrink-0 w-[18px] h-[18px] text-indigo-400" viewBox="0 0 24 24"
+                       fill="none" stroke="currentColor" stroke-width="2.5"
+                       stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                  </svg>
+                  {{ feature }}
+                </li>
+              }
+            </ul>
+
+            <!-- Image – bottom-right, edges fade via mask (no overlay on image) -->
+            <div class="absolute bottom-0 right-0 w-[65%] h-[110%] pointer-events-none z-0"
+                 style="mask-image: linear-gradient(to right, transparent 0%, black 30%, black 80%, transparent 100%),
+                                    linear-gradient(to bottom, transparent 0%, black 25%, black 85%, transparent 100%);
+                        mask-composite: intersect;
+                        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30%, black 80%, transparent 100%),
+                                            linear-gradient(to bottom, transparent 0%, black 25%, black 85%, transparent 100%);
+                        -webkit-mask-composite: destination-in;">
+              <img
+                [src]="service.image"
+                [alt]="service.title"
+                class="w-full h-full object-contain object-right-bottom
+                       opacity-90 transition-opacity duration-300
+                       brightness-110 saturate-[1.2]"
+              >
+            </div>
+
+          </div>
+
+        </div>
+      }
+    </div>
+
+  </div>
+</section>
