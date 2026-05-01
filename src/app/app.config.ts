@@ -9,7 +9,7 @@ import { routes } from './app.routes';
 import { authInterceptor } from './interceptors/auth.interceptor';
 import { errorInterceptor } from './interceptors/error.interceptor';
 import { loadingInterceptor } from './interceptors/loading.interceptor';
-import { LUCIDE_ICONS, LucideIconProvider, Menu, X, Send, ArrowRight, Rocket, Code, Zap, TrendingUp, ShieldCheck, CheckCircle, Calendar, Video } from 'lucide-angular';
+import { LUCIDE_ICONS, LucideIconProvider, Menu, X, Send, ArrowRight, Rocket, Code, Zap, TrendingUp, ShieldCheck, CheckCircle, Calendar, Video, Clock, Users } from 'lucide-angular';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -35,7 +35,7 @@ export const appConfig: ApplicationConfig = {
     { 
       provide: LUCIDE_ICONS, 
       multi: true, 
-      useValue: new LucideIconProvider({ Menu, X, Send, ArrowRight, Rocket, Code, Zap, TrendingUp, ShieldCheck, CheckCircle, Calendar, Video }) 
+      useValue: new LucideIconProvider({ Menu, X, Send, ArrowRight, Rocket, Code, Zap, TrendingUp, ShieldCheck, CheckCircle, Calendar, Video, Clock, Users }) 
     },
   ],
 };

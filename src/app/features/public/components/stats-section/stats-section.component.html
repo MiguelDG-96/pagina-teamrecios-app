@@ -1,0 +1,47 @@
+<section
+  id="stats"
+  class="relative bg-[#000004] py-5 sm:py-5 overflow-hidden"
+>
+  <!-- Background Glows -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-0 right-1/4 w-[400px] h-[400px] rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-0 left-1/4 w-[300px] h-[300px] bg-violet-700/5 rounded-full blur-[100px]"></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-12">
+    
+    <!-- Stats Grid / Carousel for Mobile -->
+    <div class="flex overflow-x-auto snap-x snap-mandatory gap-6 py-3 px-1 md:grid md:grid-cols-2 lg:grid-cols-4 md:overflow-visible">
+      @for (stat of stats; track stat.label) {
+        <div class="group relative flex items-center gap-5 p-6 min-h-[130px]
+                    snap-center flex-shrink-0 w-[85%] sm:w-[48%] md:w-auto
+                    bg-[#040612] border border-indigo-500/15 rounded-2xl
+                    hover:border-indigo-500/40 transition-all duration-500 hover:-translate-y-1
+                    shadow-xl shadow-black/60 overflow-hidden">
+
+          <!-- ── Icon Box ────────────────────────── -->
+          <div class="flex-shrink-0 w-[60px] h-[60px] rounded-xl
+                      bg-indigo-600/10 border border-indigo-500/30
+                      flex items-center justify-center
+                      shadow-[0_0_18px_rgba(79,70,229,0.15)]
+                      group-hover:shadow-[0_0_30px_rgba(79,70,229,0.30)]
+                      group-hover:border-indigo-500/60 transition-all duration-300">
+            <lucide-icon [name]="stat.icon" class="w-7 h-7 text-indigo-400"></lucide-icon>
+          </div>
+
+          <!-- ── Stat Value + Label ──────────────── -->
+          <div class="flex flex-col justify-center flex-1">
+            <span class="text-3xl md:text-4xl font-extrabold text-indigo-400 tracking-tight leading-none group-hover:text-indigo-300 transition-colors duration-300">
+              {{ stat.value }}
+            </span>
+            <span class="text-gray-300 text-sm font-medium mt-2 leading-tight">
+              {{ stat.label }}
+            </span>
+          </div>
+
+        </div>
+      }
+    </div>
+
+  </div>
+</section>
