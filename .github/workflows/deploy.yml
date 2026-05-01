@@ -32,4 +32,4 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/landing-page-teamrecios/browser/
-          server-dir: /home/fmweccai/public_html/
+          server-dir: ./
