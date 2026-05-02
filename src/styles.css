@@ -2,8 +2,12 @@
    TEAM RECIOS — Global Styles
    ============================================================ */
 
+/* ── Google Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
 /* ── Tailwind CSS v4 ── */
 @import "tailwindcss";
+@plugin "daisyui";
 
 /* Scan Angular component templates */
 @source "./app/**/*.{html,ts}";
@@ -16,7 +20,7 @@ html {
 body {
   background-color: #000004;
   color: #f8fafc;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: "Albert Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;

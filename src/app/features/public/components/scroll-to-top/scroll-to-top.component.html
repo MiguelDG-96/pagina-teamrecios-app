@@ -1,0 +1,44 @@
+<button
+  type="button"
+  (click)="scrollToTop()"
+  class="fixed bottom-8 right-8 z-50 flex items-center justify-center w-12 h-12 rounded-full bg-[#040612]/90 backdrop-blur-md border border-indigo-500/30 hover:border-indigo-400 text-indigo-400 hover:text-indigo-300 transition-all duration-500 shadow-lg shadow-indigo-500/20 select-none cursor-pointer outline-none hover:scale-110 active:scale-95 group"
+  [class.opacity-100]="isVisible"
+  [class.translate-y-0]="isVisible"
+  [class.pointer-events-auto]="isVisible"
+  [class.opacity-0]="!isVisible"
+  [class.translate-y-6]="!isVisible"
+  [class.pointer-events-none]="!isVisible"
+  aria-label="Volver arriba"
+>
+  <!-- Background Circle (Gray/Indigo fade) -->
+  <svg class="absolute w-full h-full transform -rotate-90 select-none" viewBox="0 0 44 44">
+    <circle
+      cx="22"
+      cy="22"
+      r="18"
+      fill="none"
+      stroke="#ffffff"
+      stroke-width="2.5"
+      class="opacity-5"
+    ></circle>
+    
+    <!-- Progress Indicator Circle -->
+    <circle
+      cx="22"
+      cy="22"
+      r="18"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      [attr.stroke-dasharray]="circumference"
+      [attr.stroke-dashoffset]="strokeDashoffset"
+      class="text-indigo-500 transition-all duration-75"
+    ></circle>
+  </svg>
+
+  <!-- Centered Arrow Icon -->
+  <svg class="w-4 h-4 text-indigo-400 group-hover:text-indigo-200 group-hover:-translate-y-0.5 transition-all duration-300 fill-none stroke-current z-10" stroke-width="2.5" viewBox="0 0 24 24">
+    <path d="M12 19V5m0 0l-7 7m7-7l7 7"></path>
+  </svg>
+</button>

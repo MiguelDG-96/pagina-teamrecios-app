@@ -1,0 +1,159 @@
+<div class="flex flex-col gap-8 select-none">
+  
+  <!-- Top Title and Description -->
+  <div class="flex flex-col gap-1">
+    <h1 class="text-3xl font-extrabold tracking-tight text-white">Resumen General</h1>
+    <p class="text-sm text-slate-400 font-medium leading-relaxed">
+      Revisa las métricas y el estado actual de tu plataforma en tiempo real.
+    </p>
+  </div>
+
+  <!-- daisyUI Stats Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    
+    <!-- Total active services -->
+    <div class="card bg-[#18181B] border border-indigo-500/10 shadow-xl hover:border-indigo-500/30 transition-all duration-300">
+      <div class="card-body gap-4">
+        <div class="flex items-center justify-between">
+          <span class="text-lg font-black text-slate-200">Servicios Activos</span>
+          <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+            <lucide-icon name="briefcase" class="w-5 h-5"></lucide-icon>
+          </div>
+        </div>
+        <div class="flex flex-col gap-1">
+          <span class="text-3xl font-black text-white">{{ stats.servicesCount }}</span>
+          <span class="text-[11px] text-slate-400">Sistemas web, móviles y landing pages</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Portafolio / Clientes -->
+    <div class="card bg-[#18181B] border border-indigo-500/10 shadow-xl hover:border-indigo-500/30 transition-all duration-300">
+      <div class="card-body gap-4">
+        <div class="flex items-center justify-between">
+          <span class="text-lg font-black text-slate-200">Portafolio</span>
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+            <lucide-icon name="rocket" class="w-5 h-5"></lucide-icon>
+          </div>
+        </div>
+        <div class="flex flex-col gap-1">
+          <span class="text-3xl font-black text-white">{{ stats.clientsCount }}</span>
+          <span class="text-[11px] text-slate-400">Marcas y empresas de confianza</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Team members -->
+    <div class="card bg-[#18181B] border border-indigo-500/10 shadow-xl hover:border-indigo-500/30 transition-all duration-300">
+      <div class="card-body gap-4">
+        <div class="flex items-center justify-between">
+          <span class="text-lg font-black text-slate-200">Miembros del Equipo</span>
+          <div class="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-violet-400">
+            <lucide-icon name="users" class="w-5 h-5"></lucide-icon>
+          </div>
+        </div>
+        <div class="flex flex-col gap-1">
+          <span class="text-3xl font-black text-white">{{ stats.usersCount }}</span>
+          <span class="text-[11px] text-slate-400">Administradores registrados</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Queries -->
+    <div class="card bg-[#18181B] border border-indigo-500/10 shadow-xl hover:border-indigo-500/30 transition-all duration-300">
+      <div class="card-body gap-4">
+        <div class="flex items-center justify-between">
+          <span class="text-lg font-black text-slate-200">Contactos</span>
+          <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+            <lucide-icon name="message-square" class="w-5 h-5"></lucide-icon>
+          </div>
+        </div>
+        <div class="flex flex-col gap-1">
+          <span class="text-3xl font-black text-white">{{ stats.contactsCount }}</span>
+          <span class="text-[11px] text-slate-400">Consultas de clientes recibidas</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Detail tables using daisyUI -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    
+    <!-- Active Services Detail -->
+    <div class="card bg-[#18181B] border border-indigo-500/10 shadow-xl">
+      <div class="card-body gap-4 p-6 sm:p-8">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex flex-col gap-1">
+            <h3 class="text-lg font-extrabold text-white">Nuestros Servicios</h3>
+            <p class="text-[11px] text-slate-400">Lista detallada de servicios ofrecidos</p>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="table table-zebra bg-base-200/40 rounded-xl overflow-hidden border border-indigo-500/5">
+            <thead>
+              <tr class="bg-base-300 text-slate-300 border-indigo-500/10">
+                <th class="text-xs tracking-wider">Servicio</th>
+                <th class="text-xs tracking-wider">Descripción</th>
+                <th class="text-xs tracking-wider">Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (s of servicesList; track s.id) {
+                <tr class="hover:bg-indigo-500/5 transition-colors border-indigo-500/5">
+                  <td class="font-bold text-slate-200 text-xs">{{ s.nombre }}</td>
+                  <td class="text-slate-400 text-xs truncate max-w-[180px]">{{ s.descripcion }}</td>
+                  <td><span class="badge badge-success badge-sm py-2 px-3 font-semibold select-none">Activo</span></td>
+                </tr>
+              } @empty {
+                <tr>
+                  <td colspan="3" class="text-center py-4 text-slate-500 text-xs">No hay servicios registrados.</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Admin team listing -->
+    <div class="card bg-[#18181B] border border-indigo-500/10 shadow-xl">
+      <div class="card-body gap-4 p-6 sm:p-8">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex flex-col gap-1">
+            <h3 class="text-lg font-extrabold text-white">Administradores</h3>
+            <p class="text-[11px] text-slate-400">Usuarios con acceso al sistema</p>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="table table-zebra bg-base-200/40 rounded-xl overflow-hidden border border-indigo-500/5">
+            <thead>
+              <tr class="bg-base-300 text-slate-300 border-indigo-500/10">
+                <th class="text-xs tracking-wider">Nombre</th>
+                <th class="text-xs tracking-wider">Correo</th>
+                <th class="text-xs tracking-wider">Rol</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (u of usersList; track u.id) {
+                <tr class="hover:bg-indigo-500/5 transition-colors border-indigo-500/5">
+                  <td class="font-bold text-slate-200 text-xs">{{ u.nombre }}</td>
+                  <td class="text-slate-400 text-xs">{{ u.email }}</td>
+                  <td><span class="badge badge-outline badge-primary font-bold text-[10px] py-1 px-2 select-none">{{ u.role || 'Admin' }}</span></td>
+                </tr>
+              } @empty {
+                <tr>
+                  <td colspan="3" class="text-center py-4 text-slate-500 text-xs">No hay usuarios registrados.</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

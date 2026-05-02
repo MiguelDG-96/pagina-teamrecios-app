@@ -1,16 +1,18 @@
-import { Injectable, signal, computed } from '@angular/core';
+import { Injectable, signal, computed, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { User, AuthState } from '../models/auth.model';
+import { Observable, tap } from 'rxjs';
+import { User, AuthState, AuthApiResponse } from '../models/auth.model';
+import { environment } from '../../../environments/environment';
 
 const TOKEN_KEY = 'tr_access_token';
 const USER_KEY  = 'tr_user';
 
-/**
- * AuthService — Manages authentication state using Angular signals.
- * Token is persisted in localStorage.
- */
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  private readonly http = inject(HttpClient);
+  private readonly router = inject(Router);
+
   private readonly _state = signal<AuthState>({
     user:            this.loadUser(),
     token:           this.loadToken(),
@@ -21,9 +23,48 @@ export class AuthService {
   readonly user            = computed(() => this._state().user);
   readonly token           = computed(() => this._state().token);
   readonly isAuthenticated = computed(() => this._state().isAuthenticated);
-  readonly role            = computed(() => this._state().user?.role ?? null);
 
-  constructor(private readonly router: Router) {}
+  /** Authenticate user via backend */
+  login(credentials: any): Observable<any> {
+    return this.http.post<any>(`${environment.apiUrl}/v1/auth/login`, credentials).pipe(
+      tap((res: any) => {
+        if (res && res.data) {
+          const { token, usuario } = res.data;
+          this.setSession(
+            {
+              id: usuario.id,
+              nombre: usuario.nombre,
+              email: usuario.email,
+              role: usuario.rolNombre || usuario.role || 'admin',
+            },
+            token,
+            Date.now() + 24 * 60 * 60 * 1000
+          );
+        }
+      })
+    );
+  }
+
+  /** Register user via backend */
+  register(userData: any): Observable<any> {
+    return this.http.post<any>(`${environment.apiUrl}/v1/auth/register`, userData).pipe(
+      tap((res: any) => {
+        if (res && res.data) {
+          const { token, usuario } = res.data;
+          this.setSession(
+            {
+              id: usuario.id,
+              nombre: usuario.nombre,
+              email: usuario.email,
+              role: usuario.rolNombre || usuario.role || 'admin',
+            },
+            token,
+            Date.now() + 24 * 60 * 60 * 1000
+          );
+        }
+      })
+    );
+  }
 
   /** Set auth session after successful login */
   setSession(user: User, token: string, expiresAt: number): void {

@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { authGuard, guestGuard } from './guards/auth.guard';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   // ── Public ──────────────────────────────────────────────────────────
@@ -20,7 +20,6 @@ export const routes: Routes = [
   // ── Auth ─────────────────────────────────────────────────────────────
   {
     path: 'admin/login',
-    canActivate: [guestGuard],
     loadComponent: () =>
       import('./features/auth/pages/login/admin-login.component').then(m => m.AdminLoginComponent),
     title: 'Acceso Administrativo | Team Recios',
