@@ -24,9 +24,12 @@ export class AuthService {
   readonly token           = computed(() => this._state().token);
   readonly isAuthenticated = computed(() => this._state().isAuthenticated);
 
-  /** Authenticate user via backend */
   login(credentials: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiUrl}/v1/auth/login`, credentials).pipe(
+    const payload = {
+      email: credentials.email || credentials.username,
+      password: credentials.password
+    };
+    return this.http.post<any>(`${environment.apiUrl}/v1/auth/login`, payload).pipe(
       tap((res: any) => {
         if (res && res.data) {
           const { token, usuario } = res.data;

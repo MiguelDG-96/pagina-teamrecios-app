@@ -276,7 +276,7 @@ export class AdminLoginComponent implements OnInit {
     this.isSubmitting = true;
     this.errorMessage = '';
 
-    this.auth.login({ username: this.username, password: this.password }).subscribe({
+    this.auth.login({ email: this.username, password: this.password }).subscribe({
       next: () => {
         this.isSubmitting = false;
         this.router.navigate(['/admin/dashboard']);
