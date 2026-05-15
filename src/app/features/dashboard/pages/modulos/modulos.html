@@ -1,0 +1,86 @@
+<div class="flex flex-col gap-6 select-none animate-fade-in">
+  
+  <!-- Header -->
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div class="flex flex-col gap-1">
+      <h1 class="text-3xl font-extrabold tracking-tight text-white flex items-center gap-3">
+        <div class="p-2 bg-indigo-500/10 border border-indigo-500/20 rounded-xl text-indigo-400">
+          <lucide-icon name="layers" class="w-6 h-6"></lucide-icon>
+        </div>
+        GestiÃ³n de Servicios
+      </h1>
+      <p class="text-sm text-slate-400 font-medium leading-relaxed">
+        Configura los módulos disponibles en el sistema.
+      </p>
+    </div>
+    <button class="btn bg-indigo-600 hover:bg-indigo-500 text-white border-none shadow-lg shadow-indigo-500/20 font-bold tracking-wide rounded-xl">
+      <lucide-icon name="plus" class="w-4 h-4"></lucide-icon>
+      Nuevo Módulo
+    </button>
+  </div>
+
+  <!-- Loading State -->
+  @if (isLoading()) {
+    <div class="flex items-center justify-center p-12">
+      <span class="loading loading-ring loading-lg text-indigo-500"></span>
+    </div>
+  }
+
+  <!-- Data Table -->
+  @if (!isLoading()) {
+    <div class="card bg-[#18181B] border border-white/5 shadow-2xl overflow-hidden rounded-2xl">
+      <div class="overflow-x-auto">
+        <table class="table table-zebra w-full bg-transparent">
+          <thead>
+            <tr class="bg-black/20 text-slate-300 border-white/5">
+              @for (col of columns(); track col) {
+                <th class="text-xs uppercase tracking-wider font-extrabold">{{ col }}</th>
+              }
+              <th class="text-xs uppercase tracking-wider font-extrabold text-right">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of data(); track item.id) {
+              <tr class="hover:bg-white/[0.02] transition-colors border-white/5 group">
+                @for (col of columns(); track col) {
+                  <td class="text-sm text-slate-300">
+                    @if (col === 'activo' || col === 'estado') {
+                      <span class="badge badge-sm font-bold border-none" 
+                            [ngClass]="item[col] ? 'bg-emerald-500/20 text-emerald-400' : 'bg-rose-500/20 text-rose-400'">
+                        {{ item[col] ? 'Activo' : 'Inactivo' }}
+                      </span>
+                    } @else if (col === 'descripcion') {
+                      <span class="truncate max-w-xs block" [title]="item[col]">{{ item[col] }}</span>
+                    } @else {
+                      <span class="font-medium text-slate-200">{{ item[col] }}</span>
+                    }
+                  </td>
+                }
+                <td class="text-right space-x-2">
+                  <button class="btn btn-sm btn-ghost btn-square text-indigo-400 hover:bg-indigo-500/20 transition-all opacity-0 group-hover:opacity-100">
+                    <lucide-icon name="edit-2" class="w-4 h-4"></lucide-icon>
+                  </button>
+                  <button class="btn btn-sm btn-ghost btn-square text-rose-400 hover:bg-rose-500/20 transition-all opacity-0 group-hover:opacity-100">
+                    <lucide-icon name="trash-2" class="w-4 h-4"></lucide-icon>
+                  </button>
+                </td>
+              </tr>
+            } @empty {
+              <tr>
+                <td [attr.colspan]="columns().length + 1" class="text-center py-12">
+                  <div class="flex flex-col items-center gap-3 text-slate-500">
+                    <lucide-icon name="inbox" class="w-12 h-12 opacity-50"></lucide-icon>
+                    <span class="text-sm font-medium">No se encontraron registros.</span>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  }
+
+</div>
+
+

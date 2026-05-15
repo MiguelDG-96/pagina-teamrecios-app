@@ -13,7 +13,8 @@ import {
   LUCIDE_ICONS, 
   LucideIconProvider, 
   Menu, X, Send, ArrowRight, Rocket, Code, Zap, TrendingUp, ShieldCheck, CheckCircle, Calendar, Video, Clock, Users,
-  LayoutGrid, Briefcase, MessageSquare, Shield, Package, Layers, Search, Bell
+  LayoutGrid, Briefcase, MessageSquare, Shield, Package, Layers, Search, Bell, Edit2, Trash2, Plus, Inbox, Lock, Settings,
+  ChevronUp, ChevronDown, QrCode
 } from 'lucide-angular';
 
 export const appConfig: ApplicationConfig = {
@@ -42,7 +43,8 @@ export const appConfig: ApplicationConfig = {
       multi: true, 
       useValue: new LucideIconProvider({ 
         Menu, X, Send, ArrowRight, Rocket, Code, Zap, TrendingUp, ShieldCheck, CheckCircle, Calendar, Video, Clock, Users,
-        LayoutGrid, Briefcase, MessageSquare, Shield, Package, Layers, Search, Bell
+        LayoutGrid, Briefcase, MessageSquare, Shield, Package, Layers, Search, Bell, Edit2, Trash2, Plus, Inbox, Lock, Settings,
+        ChevronUp, ChevronDown, QrCode
       }) 
     },
   ],

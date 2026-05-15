@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule } from 'lucide-angular';
+import { RollingNumberComponent } from './rolling-number.component';
 
 interface StatItem {
   icon: string;
@@ -11,14 +12,14 @@ interface StatItem {
 @Component({
   selector: 'app-stats-section',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule],
+  imports: [CommonModule, LucideAngularModule, RollingNumberComponent],
   templateUrl: './stats-section.component.html',
 })
 export class StatsSectionComponent {
   readonly stats: StatItem[] = [
     {
       icon: 'rocket',
-      value: '+20',
+      value: '+3',
       label: 'Proyectos completados',
     },
     {
@@ -28,7 +29,7 @@ export class StatsSectionComponent {
     },
     {
       icon: 'clock',
-      value: '+200',
+      value: '+20',
       label: 'Publicaciones automatizadas',
     },
     {

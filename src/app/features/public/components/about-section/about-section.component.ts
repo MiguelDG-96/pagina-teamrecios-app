@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { LucideAngularModule } from 'lucide-angular';
 
 interface TechIcon {
   name: string;
@@ -19,10 +20,19 @@ interface Founder {
 @Component({
   selector: 'app-about-section',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, LucideAngularModule],
   templateUrl: './about-section.component.html',
 })
 export class AboutSectionComponent {
+  readonly visibleSkills = signal<Record<string, boolean>>({});
+
+  toggleSkills(name: string) {
+    this.visibleSkills.update(v => ({
+      ...v,
+      [name]: !v[name]
+    }));
+  }
+
   readonly founders: Founder[] = [
     {
       name: 'Miguel Angel Dolic Grández',

@@ -62,15 +62,48 @@
               {{ founder.description }}
             </p>
 
-            <!-- Tech Icons -->
-            <div class="flex flex-wrap justify-center md:justify-start items-center gap-3 mb-6">
-              @for (tech of founder.techStack; track tech.name) {
-                <div class="flex items-center gap-2 bg-indigo-500/5 hover:bg-indigo-500/10 border border-indigo-500/15 hover:border-indigo-500/30 px-3.5 py-2 rounded-lg transition-all duration-300 shadow-sm" [title]="tech.name">
-                  <img [src]="tech.iconUrl" [alt]="tech.name" class="w-5 h-5 object-contain" />
-                  <span class="text-xs font-medium text-gray-300">{{ tech.name }}</span>
-                </div>
-              }
+            <!-- Tech Stack Toggle Button -->
+            <div class="flex justify-center md:justify-start mb-4">
+              <button
+                (click)="toggleSkills(founder.name)"
+                class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl
+                       bg-indigo-600/10 border border-indigo-500/20 text-indigo-300 font-semibold text-sm
+                       hover:bg-indigo-600/20 hover:border-indigo-500/40 hover:-translate-y-0.5
+                       transition-all duration-300 group/btn"
+              >
+                <span>{{ visibleSkills()[founder.name] ? 'Ocultar Tech Stack' : 'Ver Tech Stack' }}</span>
+                <lucide-icon
+                  [name]="visibleSkills()[founder.name] ? 'chevron-up' : 'chevron-down'"
+                  class="w-4 h-4 transition-transform duration-300"
+                  [class.rotate-180]="visibleSkills()[founder.name]"
+                ></lucide-icon>
+              </button>
+            </div>
 
+            <!-- Tech Icons (Animated) -->
+            <div class="overflow-hidden transition-[max-height,opacity] duration-700 ease-in-out"
+                 [style.max-height]="visibleSkills()[founder.name] ? '500px' : '0px'"
+                 [style.opacity]="visibleSkills()[founder.name] ? '1' : '0'"
+                 [class.mt-4]="visibleSkills()[founder.name]">
+              
+              <div class="flex flex-wrap justify-center md:justify-start items-center gap-3 py-2">
+                @for (tech of founder.techStack; track tech.name; let i = $index) {
+                  <div
+                    class="flex items-center gap-2 bg-indigo-500/5 border border-indigo-500/15 px-3.5 py-2 rounded-lg
+                           shadow-sm transition-all duration-500 transform will-change-transform"
+                    [style.transition-delay]="(visibleSkills()[founder.name] ? i * 80 : 0) + 'ms'"
+                    [style.transition-timing-function]="'cubic-bezier(0.34, 1.56, 0.64, 1)'"
+                    [class.translate-y-4]="!visibleSkills()[founder.name]"
+                    [class.translate-y-0]="visibleSkills()[founder.name]"
+                    [class.opacity-0]="!visibleSkills()[founder.name]"
+                    [class.opacity-100]="visibleSkills()[founder.name]"
+                    [title]="tech.name"
+                  >
+                    <img [src]="tech.iconUrl" [alt]="tech.name" class="w-5 h-5 object-contain" />
+                    <span class="text-xs font-medium text-gray-300">{{ tech.name }}</span>
+                  </div>
+                }
+              </div>
             </div>
           </div>
 

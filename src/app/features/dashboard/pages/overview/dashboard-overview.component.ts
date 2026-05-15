@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { LucideAngularModule } from 'lucide-angular';
 import { environment } from '../../../../../environments/environment';
+import { QrService } from '../../../../core/services/qr.service';
 
 @Component({
   selector: 'app-dashboard-overview',
@@ -12,6 +13,16 @@ import { environment } from '../../../../../environments/environment';
 })
 export class DashboardOverviewComponent implements OnInit {
   private readonly http = inject(HttpClient);
+  private readonly qrService = inject(QrService);
+
+  async generateQr(): Promise<void> {
+    try {
+      const qrDataUrl = await this.qrService.generateQrWithLogo('https://teamrecios.com/');
+      this.qrService.downloadImage(qrDataUrl, 'QR-TeamRecios.png');
+    } catch (error) {
+      console.error('Error generating QR:', error);
+    }
+  }
 
   stats = {
     servicesCount: 4,

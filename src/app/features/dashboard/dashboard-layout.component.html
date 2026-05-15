@@ -95,22 +95,16 @@
 
             <ul class="px-3 flex flex-col gap-1">
               @for (mod of modulos; track mod.id) {
-                <li>
+                <li class="transition-all duration-300">
                   <a
                     [routerLink]="mod.ruta"
-                    routerLinkActive="bg-[#18181b] text-blue-400 border border-transparent font-semibold"
+                    routerLinkActive="bg-white/5 text-blue-400 border border-transparent font-semibold"
                     class="flex items-center justify-between gap-3 text-gray-300 hover:bg-white/5 hover:text-white font-medium rounded-lg px-4 py-2.5 transition-all duration-200 select-none cursor-pointer"
                   >
                     <div class="flex items-center gap-3">
                       <lucide-icon [name]="getLucideName(mod.slug)" class="w-5 h-5 text-current"></lucide-icon>
                       <span class="text-sm">{{ mod.nombre }}</span>
                     </div>
-                    <!-- Example Badge for premium feel -->
-                    @if (mod.slug.includes('servicio') || mod.slug.includes('usuario')) {
-                      <span class="text-[10px] font-bold tracking-wide bg-blue-500/10 text-blue-300 border border-blue-500/20 px-1.5 py-0.5 rounded-md min-w-[20px] text-center">
-                        {{ mod.slug.includes('servicio') ? '12' : '8' }}
-                      </span>
-                    }
                   </a>
                 </li>
               }

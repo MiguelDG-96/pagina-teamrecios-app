@@ -9,6 +9,7 @@ import { inject } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { AuthService } from '../core/services/auth.service';
 
 /**
  * Error Interceptor — Centralised HTTP error handling.
@@ -30,7 +31,8 @@ export const errorInterceptor: HttpInterceptorFn = (
           break;
         case 401:
           message = 'Sesión expirada. Por favor inicia sesión de nuevo.';
-          router.navigate(['/admin/login']);
+          const authService = inject(AuthService);
+          authService.logout();
           break;
         case 403:
           message = 'No tienes permisos para realizar esta acción.';

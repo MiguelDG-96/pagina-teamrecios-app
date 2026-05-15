@@ -1,11 +1,24 @@
 <div class="flex flex-col gap-8 select-none">
   
   <!-- Top Title and Description -->
-  <div class="flex flex-col gap-1">
-    <h1 class="text-3xl font-extrabold tracking-tight text-white">Resumen General</h1>
-    <p class="text-sm text-slate-400 font-medium leading-relaxed">
-      Revisa las métricas y el estado actual de tu plataforma en tiempo real.
-    </p>
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div class="flex flex-col gap-1">
+      <h1 class="text-3xl font-extrabold tracking-tight text-white">Resumen General</h1>
+      <p class="text-sm text-slate-400 font-medium leading-relaxed">
+        Revisa las métricas y el estado actual de tu plataforma en tiempo real.
+      </p>
+    </div>
+
+    <!-- QR Button -->
+    <button 
+      (click)="generateQr()"
+      class="btn btn-primary gap-2 h-12 px-6 rounded-xl border-none
+             bg-indigo-500 hover:bg-indigo-600 hover:border-indigo-600
+             text-white font-bold shadow-lg shadow-indigo-600/20 transition-all duration-300"
+    >
+      <lucide-icon name="qr-code" class="w-5 h-5"></lucide-icon>
+      Generar QR
+    </button>
   </div>
 
   <!-- daisyUI Stats Grid -->

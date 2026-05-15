@@ -21,7 +21,7 @@ export class PublicNavbarComponent implements OnInit {
     { label: 'Inicio',          route: '/',          fragment: 'hero' },
     { label: 'Servicios',       route: '/',          fragment: 'services' },
     { label: 'Sobre Nosotros',  route: '/',          fragment: 'about' },
-    { label: 'Tecnologías',     route: '/',          fragment: 'technologies' },
+    { label: 'Clientes',        route: '/',          fragment: 'clients' },
     { label: 'Contacto',        route: '/',          fragment: 'contact' },
   ]);
 
