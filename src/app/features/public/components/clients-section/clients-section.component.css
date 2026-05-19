@@ -1,1 +1,157 @@
 /* Clients Section Styles */
+
+.client-card {
+  position: relative;
+  background: transparent;
+  overflow: hidden;
+  z-index: 1;
+  padding: 1.5px; /* acts as border width */
+  border-radius: 1.5rem; /* rounded-2xl (24px) */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  width: 100%;
+}
+
+.client-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #070b16; /* slightly lighter than #020617 section bg */
+  border-radius: calc(1.5rem - 1.5px); /* inner border-radius matches */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem; /* p-8 */
+  z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  transition: background-color 0.3s ease;
+}
+
+.client-card:hover .client-card-inner {
+  background: #0e1424; /* slightly lighter on hover */
+}
+
+/* Light Star rotating border element */
+.light-star {
+  position: absolute;
+  top: -150%;
+  left: -150%;
+  width: 400%;
+  height: 400%;
+  z-index: -1;
+  pointer-events: none;
+  animation: rotate-border 6s linear infinite;
+}
+
+/* Colors for light-star conic-gradient */
+.card-blue .light-star {
+  background: conic-gradient(
+    from 180deg,
+    transparent 65%,
+    rgba(59, 130, 246, 0.5) 75%,
+    #3b82f6 85%,
+    #ffffff 90%,
+    #3b82f6 95%,
+    transparent 100%
+  );
+}
+
+.card-indigo .light-star {
+  background: conic-gradient(
+    from 180deg,
+    transparent 65%,
+    rgba(99, 102, 241, 0.5) 75%,
+    #6366f1 85%,
+    #ffffff 90%,
+    #6366f1 95%,
+    transparent 100%
+  );
+}
+
+.card-red .light-star {
+  background: conic-gradient(
+    from 180deg,
+    transparent 65%,
+    rgba(239, 68, 68, 0.5) 75%,
+    #ef4444 85%,
+    #ffffff 90%,
+    #ef4444 95%,
+    transparent 100%
+  );
+}
+
+/* Ray of light (shine animation) */
+.card-shine {
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 100%;
+  height: 300%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  transform: rotate(45deg);
+  animation: card-shine-glide 4s infinite;
+  z-index: 2;
+  pointer-events: none;
+}
+
+@keyframes card-shine-glide {
+  0% { left: -100%; top: -100%; }
+  20%, 100% { left: 150%; top: 150%; }
+}
+
+@keyframes rotate-border {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Glow pulse animation matching card color */
+.card-blue {
+  animation: card-glow-pulse-blue 4s ease-in-out infinite;
+}
+.card-indigo {
+  animation: card-glow-pulse-indigo 4s ease-in-out infinite;
+}
+.card-red {
+  animation: card-glow-pulse-red 4s ease-in-out infinite;
+}
+
+@keyframes card-glow-pulse-blue {
+  0%, 100% {
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 15px 35px -5px rgba(59, 130, 246, 0.2);
+  }
+}
+
+@keyframes card-glow-pulse-indigo {
+  0%, 100% {
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 15px 35px -5px rgba(99, 102, 241, 0.2);
+  }
+}
+
+@keyframes card-glow-pulse-red {
+  0%, 100% {
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 15px 35px -5px rgba(239, 68, 68, 0.2);
+  }
+}
+
+/* Hover transform */
+.client-card:hover {
+  transform: translateY(-6px);
+}
