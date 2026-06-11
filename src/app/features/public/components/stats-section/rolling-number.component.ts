@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, signal, effect, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, Input, OnInit, signal, effect, ElementRef, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -47,7 +47,7 @@ export class RollingNumberComponent implements OnInit, AfterViewInit {
   digits: number[] = [];
   animated = false;
 
-  constructor(private el: ElementRef) {}
+  constructor(private el: ElementRef, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     const match = this.value.match(/^(\D*)(\d+)(\D*)$/);
@@ -60,13 +60,16 @@ export class RollingNumberComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        setTimeout(() => {
-          this.animated = true;
-        }, 100);
-        observer.disconnect();
-      }
-    }, { threshold: 0.1 });
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            this.animated = true;
+            this.cdr.detectChanges();
+          }, 50);
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.01 }); // Reduced threshold for better mobile detection
 
     observer.observe(this.el.nativeElement);
   }

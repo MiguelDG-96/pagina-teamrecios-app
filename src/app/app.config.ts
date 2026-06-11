@@ -14,7 +14,7 @@ import {
   LucideIconProvider, 
   Menu, X, Send, ArrowRight, Rocket, Code, Zap, TrendingUp, ShieldCheck, CheckCircle, Calendar, Video, Clock, Users,
   LayoutGrid, Briefcase, MessageSquare, Shield, Package, Layers, Search, Bell, Edit2, Trash2, Plus, Inbox, Lock, Settings,
-  ChevronUp, ChevronDown, QrCode
+  ChevronUp, ChevronDown, QrCode, Download
 } from 'lucide-angular';
 
 export const appConfig: ApplicationConfig = {
@@ -44,7 +44,7 @@ export const appConfig: ApplicationConfig = {
       useValue: new LucideIconProvider({ 
         Menu, X, Send, ArrowRight, Rocket, Code, Zap, TrendingUp, ShieldCheck, CheckCircle, Calendar, Video, Clock, Users,
         LayoutGrid, Briefcase, MessageSquare, Shield, Package, Layers, Search, Bell, Edit2, Trash2, Plus, Inbox, Lock, Settings,
-        ChevronUp, ChevronDown, QrCode
+        ChevronUp, ChevronDown, QrCode, Download
       }) 
     },
   ],

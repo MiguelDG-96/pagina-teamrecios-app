@@ -80,6 +80,18 @@
   );
 }
 
+.card-amber-100 .light-star {
+  background: conic-gradient(
+    from 180deg,
+    transparent 65%,
+    rgba(151, 148, 90, 0.5) 75%,
+    #ccb9a2 85%,
+    #ffffff 90%,
+    #ccb9a2 95%,
+    transparent 100%
+  );
+}
+
 /* Ray of light (shine animation) */
 .card-shine {
   position: absolute;
@@ -123,6 +135,9 @@
 .card-red {
   animation: card-glow-pulse-red 4s ease-in-out infinite;
 }
+.card-amber-100 {
+  animation: card-glow-pulse-amber-100 4s ease-in-out infinite;
+}
 
 @keyframes card-glow-pulse-blue {
   0%, 100% {
@@ -148,6 +163,15 @@
   }
   50% {
     box-shadow: 0 15px 35px -5px rgba(239, 68, 68, 0.2);
+  }
+}
+
+@keyframes card-glow-pulse-amber-100 {
+  0%, 100% {
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 15px 35px -5px rgba(204, 185, 162, 0.2);
   }
 }
 
