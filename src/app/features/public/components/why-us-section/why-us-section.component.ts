@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule } from "lucide-angular";
+import { ScrollRevealDirective } from '../../../../shared/directives/scroll-reveal.directive';
 
 interface Feature {
   id: string;
@@ -12,7 +13,7 @@ interface Feature {
 @Component({
   selector: 'app-why-us-section',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule],
+  imports: [CommonModule, LucideAngularModule, ScrollRevealDirective],
   templateUrl: './why-us-section.component.html',
 })
 export class WhyUsSectionComponent {

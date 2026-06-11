@@ -118,12 +118,18 @@
 
 @keyframes rotate-border {
   0% {
-    transform: rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
   }
   100% {
     transform: rotate(360deg);
   }
 }
+
+/* ── Custom Sequential Delays for Cards ── */
+/* Base duration is 1.2s (1200ms) */
+.delay-client-1 { transition-delay: 100ms !important; }
+.delay-client-2 { transition-delay: 1300ms !important; } /* Starts exactly after card 1 finishes */
+.delay-client-3 { transition-delay: 2500ms !important; } /* Starts exactly after card 2 finishes */
 
 /* Glow pulse animation matching card color */
 .card-blue {

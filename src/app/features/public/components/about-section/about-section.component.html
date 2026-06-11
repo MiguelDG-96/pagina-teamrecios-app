@@ -11,7 +11,7 @@
   <div class="relative max-w-7xl mx-auto px-6 lg:px-12">
     
     <!-- Section Header -->
-    <div class="flex flex-col items-center text-center gap-4 mb-16 sm:mb-20">
+    <div appScrollReveal="reveal-scale" class="flex flex-col items-center text-center gap-4 mb-16 sm:mb-20">
       <span class="text-xs font-bold tracking-[0.3em] uppercase text-indigo-400">
         SOBRE NOSOTROS
       </span>
@@ -25,8 +25,9 @@
 
     <!-- Founders Grid -->
     <div class="grid grid-cols-1 gap-12 md:gap-16 max-w-5xl mx-auto">
-      @for (founder of founders; track founder.name) {
-        <div class="group relative flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12 p-6 md:p-10
+      @for (founder of founders; track founder.name; let i = $index) {
+        <div appScrollReveal="reveal-scale" [delay]="'delay-' + ((i+1)*100)"
+             class="group relative flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12 p-6 md:p-10
                     bg-[#040612] border border-indigo-500/15 rounded-2xl
                     hover:border-indigo-500/40 transition-all duration-500 hover:-translate-y-1
                     shadow-xl shadow-black/60 overflow-hidden">

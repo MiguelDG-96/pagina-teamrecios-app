@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule } from 'lucide-angular';
+import { ScrollRevealDirective } from '../../../../shared/directives/scroll-reveal.directive';
 
 interface TechIcon {
   name: string;
@@ -20,7 +21,7 @@ interface Founder {
 @Component({
   selector: 'app-about-section',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule],
+  imports: [CommonModule, LucideAngularModule, ScrollRevealDirective],
   templateUrl: './about-section.component.html',
 })
 export class AboutSectionComponent {

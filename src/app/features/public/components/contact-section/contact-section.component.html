@@ -133,18 +133,13 @@
                   id="projectType"
                   name="projectType"
                   [(ngModel)]="form.projectType"
-                  class="w-full bg-[#000004]/60 border border-indigo-500/20 rounded-xl px-4 py-3.5 text-sm text-white/90 outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-500/20 transition-all duration-300 appearance-none cursor-pointer"
+                  class="select w-full border border-indigo-500/20 rounded-xl text-sm text-white/90 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-500/20 transition-all duration-300 cursor-pointer"
                 >
                   <option value="" disabled selected>Selecciona una opción</option>
                   @for (option of projectOptions; track option) {
                     <option [value]="option">{{ option }}</option>
                   }
                 </select>
-                <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-indigo-400">
-                  <svg class="w-4 h-4 fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24">
-                    <path d="m6 9 6 6 6-6"></path>
-                  </svg>
-                </div>
               </div>
             </div>
 

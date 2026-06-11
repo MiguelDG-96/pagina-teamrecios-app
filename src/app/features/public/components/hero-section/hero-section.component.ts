@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
+import { ScrollRevealDirective } from '../../../../shared/directives/scroll-reveal.directive';
 
 interface HeroStat {
   icon: string;
@@ -9,7 +10,7 @@ interface HeroStat {
 @Component({
   selector: 'app-hero-section',
   standalone: true,
-  imports: [LucideAngularModule],
+  imports: [LucideAngularModule, ScrollRevealDirective],
   templateUrl: './hero-section.component.html',
   styleUrl: './hero-section.component.css',
 })

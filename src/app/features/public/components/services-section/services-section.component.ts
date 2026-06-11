@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule } from 'lucide-angular';
+import { ScrollRevealDirective } from '../../../../shared/directives/scroll-reveal.directive';
 
 interface ServiceFeature {
   icon: string;
@@ -14,7 +15,7 @@ interface ServiceFeature {
 @Component({
   selector: 'app-services-section',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule],
+  imports: [CommonModule, LucideAngularModule, ScrollRevealDirective],
   templateUrl: './services-section.component.html',
 })
 export class ServicesSectionComponent {
