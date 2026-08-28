@@ -37,7 +37,7 @@ export class AboutSectionComponent {
   readonly founders: Founder[] = [
     {
       name: 'Miguel Angel Dolic Grández',
-      role: 'CEO & Fundador',
+      role: 'Frontend Developer',
       education: 'Ingeniería de Sistemas por la Universidad Nacional de San Martín',
       description: 'Frontend Specialist orientado a construir productos digitales con propósito. Combino diseño, arquitectura y lógica de negocio para desarrollar interfaces modernas, eficientes y alineadas a objetivos reales. Más que desarrollar interfaces, diseño la “columna vertebral” visual y funcional del sistema, asegurando que cada componente tenga impacto en la experiencia del usuario y en el crecimiento del negocio.',
       image: '/img/fundadores/madg.png',
@@ -52,7 +52,7 @@ export class AboutSectionComponent {
     },
     {
       name: 'Nixon Herrera Fernández',
-      role: 'CEO & Co-fundador',
+      role: 'Backend Developer',
       education: 'Ingeniería de Sistemas por la Universidad Nacional de San Martín',
       description: 'Experto en el diseño de bases de datos y modelado de la lógica del negocio. Siempre en constante aprendizaje, es un verdadero apasionado por la inteligencia artificial y el uso de herramientas de vanguardia.',
       image: '/img/fundadores/nixon-gay.png',
