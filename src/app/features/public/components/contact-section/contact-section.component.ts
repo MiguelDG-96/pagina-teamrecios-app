@@ -38,31 +38,42 @@ export class ContactSectionComponent {
   ];
 
   onSubmit(): void {
-    if (!this.form.name || !this.form.email || !this.form.message) {
+    if (!this.form.name || !this.form.message) {
       alert('Por favor, completa los campos requeridos.');
       return;
     }
 
     this.isSubmitting = true;
 
-    // Simulate sending with a slight premium delay
+    const whatsappMessage = [
+      '¡Hola Team Recios!',
+      `Mi nombre es ${this.form.name},`,
+      this.form.email && `mi correo ${this.form.email},`,
+      this.form.whatsapp && `mi celular es ${this.form.whatsapp},`,
+      this.form.projectType && `Tipo de proyecto ${this.form.projectType}`,
+      `${this.form.message}.`,
+    ]
+      .filter((line): line is string => Boolean(line))
+      .join('\n');
+
+    window.open(
+      `https://wa.me/51934634772?text=${encodeURIComponent(whatsappMessage)}`,
+      '_blank',
+      'noopener,noreferrer',
+    );
+
+    this.isSubmitting = false;
+    this.isSubmitted = true;
+    this.form = {
+      name: '',
+      email: '',
+      whatsapp: '',
+      projectType: '',
+      message: '',
+    };
+
     setTimeout(() => {
-      this.isSubmitting = false;
-      this.isSubmitted = true;
-
-      // Reset the form
-      this.form = {
-        name: '',
-        email: '',
-        whatsapp: '',
-        projectType: '',
-        message: '',
-      };
-
-      // Hide success message after 5 seconds
-      setTimeout(() => {
-        this.isSubmitted = false;
-      }, 5000);
-    }, 1500);
+      this.isSubmitted = false;
+    }, 5000);
   }
 }
