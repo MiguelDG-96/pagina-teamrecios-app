@@ -1,4 +1,4 @@
-name: Despliegue Automático FTP
+name: Verificación del proyecto
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main  # o la rama por defecto de tu repositorio
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,11 +25,11 @@ jobs:
       - name: Compilar el proyecto (Build)
         run: npm run build
 
-      - name: Desplegar archivos por FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/team-recios-app/browser/
-          server-dir: ./
+      # - name: Desplegar archivos por FTP
+      #   uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      #   with:
+      #     server: ${{ secrets.FTP_SERVER }}
+      #     username: ${{ secrets.FTP_USERNAME }}
+      #     password: ${{ secrets.FTP_PASSWORD }}
+      #     local-dir: ./dist/team-recios-app/browser/
+      #     server-dir: ./
