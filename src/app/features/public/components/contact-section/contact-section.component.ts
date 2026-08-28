@@ -50,7 +50,7 @@ export class ContactSectionComponent {
       `Mi nombre es ${this.form.name},`,
       this.form.email && `mi correo ${this.form.email},`,
       this.form.whatsapp && `mi celular es ${this.form.whatsapp},`,
-      this.form.projectType && `Tipo de proyecto de mi interés${this.form.projectType}`,
+      this.form.projectType && `Tipo de proyecto de mi interés${this.form.projectType},`,
       `${this.form.message}.`,
     ]
       .filter((line): line is string => Boolean(line))
